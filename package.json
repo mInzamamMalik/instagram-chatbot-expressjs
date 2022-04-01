@@ -1,0 +1,23 @@
+{
+  "name": "instagram-chatbot-expressjs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon index.mjs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/malikasinger1/instagram-chatbot-expressjs.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/malikasinger1/instagram-chatbot-expressjs/issues"
+  },
+  "homepage": "https://github.com/malikasinger1/instagram-chatbot-expressjs#readme",
+  "dependencies": {
+    "express": "^4.17.3"
+  }
+}
