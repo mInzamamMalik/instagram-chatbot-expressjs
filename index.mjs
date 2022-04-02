@@ -1,10 +1,47 @@
 import express from "express";
 const app = express();
 
-const PORT = process.env.PORT || 3000;
+app.use(express.json())
 
+const PORT = process.env.PORT || 3000;
+// EAAHmLjuGqE8BAOkeXmIqOZCDy3Mcpv9H0ecFGTJncjGmSvIMCrZCqZBAwM2DymUHZCP842FYAxkowMSAZCzVpaY4rZBZC61u1BIJnlLhqL334THU4tut2Q1V4DtpXS6RPp04f0TQRYnRIwwY6TQgMIIypM2vPEcGROxQJPfNRVEyptBr7G7Hf5CnBMxfOAZAQjztgUZAZCZCU7FngZDZD
+
+// https://f551-111-88-34-161.ngrok.io/instawebhook
 app.post("/instawebhook", (req, res) => {
+
+    console.log("req.body: ", req.body);
+    console.log("req.url: ", req.url);
+
     res.send("I am insta webhook");
+})
+app.get("/instawebhook", (req, res) => {
+
+    console.log("req.body: ", req.body);
+    console.log("req.url: ", req.url);
+
+    // Your verify token. Should be a random string.
+    let VERIFY_TOKEN = "abc"
+
+    // Parse the query params
+    let mode = req.query['hub.mode'];
+    let token = req.query['hub.verify_token'];
+    let challenge = req.query['hub.challenge'];
+
+    // Checks if a token and mode is in the query string of the request
+    if (mode && token) {
+
+        // Checks the mode and token sent is correct
+        if (mode === 'subscribe' && token === VERIFY_TOKEN) {
+
+            // Responds with the challenge token from the request
+            console.log('WEBHOOK_VERIFIED');
+            res.status(200).send(challenge);
+
+        } else {
+            // Responds with '403 Forbidden' if verify tokens do not match
+            res.sendStatus(403);
+        }
+    }
 })
 
 // app.post("/instawebhook", async (req, res) => {
